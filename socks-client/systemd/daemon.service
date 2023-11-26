@@ -1,0 +1,13 @@
+[Unit]
+Description=SocksClientDaemon
+
+[Service]
+ExecStart=<path_to_repo>/socks-client/run.sh
+Restart=on-failure
+RestartSec=60s
+User=<your_user>
+StandardOutput=file:/var/log/socks-client/output.log
+StandardError=file:/var/log/socks-client/error.log
+
+[Install]
+WantedBy=multi-user.target

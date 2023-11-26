@@ -1,0 +1,10 @@
+[Unit]
+Description=SocksLogRotateTimer
+Requires=socks-logrotate.service
+
+[Timer]
+Unit=socks-logrotate.service
+OnCalendar=*-*-* *:*:00
+
+[Install]
+WantedBy=timers.target

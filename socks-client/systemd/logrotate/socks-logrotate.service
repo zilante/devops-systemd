@@ -1,0 +1,9 @@
+[Unit]
+Description=SocksLogRotateDaemon
+Wants=socks-logrotate.timer
+
+[Service]
+ExecStart=<path_to_repo>/socks-client/systemd/logrotate/logrotate.sh
+
+[Install]
+WantedBy=multi-user.target 

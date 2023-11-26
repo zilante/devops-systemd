@@ -1,0 +1,119 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:5000
+  description: Generated server url
+paths:
+  /api/socks/outcome:
+    post:
+      tags:
+      - controller
+      operationId: deleteSocks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SockRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/socks/income:
+    post:
+      tags:
+      - controller
+      operationId: addSocks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SockRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/socks:
+    get:
+      tags:
+      - controller
+      operationId: getSockQuantity
+      parameters:
+      - name: color
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: operation
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - MORETHAN
+          - LESSTHAN
+          - EQUAL
+          - "NO"
+      - name: cottonPart
+        in: query
+        required: true
+        schema:
+          maximum: 100
+          minimum: 0
+          type: integer
+          format: int32
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    SockRequest:
+      required:
+      - color
+      type: object
+      properties:
+        color:
+          maxLength: 20
+          minLength: 0
+          type: string
+        cottonPart:
+          maximum: 100
+          minimum: 0
+          type: integer
+          format: int32
+        quantity:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
